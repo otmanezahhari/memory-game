@@ -25,10 +25,6 @@ class App extends Component{
       this.stopClicking()
       //Methode To check Match Block
      this.checkMatchedBlock(AllFlipCart[0],AllFlipCart[1]);
-    }else if (this.state.myGameLists.length==AllFlipCart.length){
-      document.querySelector(".control-buttons.msg").innerHTML = "You Are The Best Try Again";
-      document.querySelector(".control-buttons.msg").style.display = "block";
-      triesElement.innerHTML = 0;
     }
 
   }
@@ -41,6 +37,12 @@ class App extends Component{
       //Show To Match block
       firstBlock.classList.add('has-match');
       secondBlock.classList.add('has-match');
+    }else{
+      triesElement.innerHTML = parseInt(triesElement.innerHTML)+1;
+    setTimeout(()=>{
+      firstBlock.classList.remove('is-flipped');
+      secondBlock.classList.remove('is-flipped');
+    },this.state.duration);
     }
   }
 
@@ -49,6 +51,7 @@ class App extends Component{
   document.querySelector('.memory-game-blocks').classList.add('no-clicking');
   //TimeOut to remove Stop
   setTimeout(()=>{
+    
     document.querySelector('.memory-game-blocks').classList.remove('no-clicking');
   },this.state.duration)
  }
